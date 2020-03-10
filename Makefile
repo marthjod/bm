@@ -9,7 +9,7 @@ vet:
 
 .PHONY: lint
 lint:
-	STATUS=0; for PKG in $(PACKAGES); do golint -set_exit_status $$PKG || STATUS=1; done; exit $$STATUS
+	STATUS=0; for PKG in $(PACKAGES); do ${GOBIN}/golint -set_exit_status $$PKG || STATUS=1; done; exit $$STATUS
 
 .PHONY: errcheck
 errcheck:
