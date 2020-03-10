@@ -6,7 +6,7 @@ go:
 
 before_install:
   - go get -u github.com/marthjod/bm/...
-  - go get -u github.com/golang/lint/golint
+  - go get -u golang.org/x/lint
   - go get -u github.com/kisielk/errcheck
   - go get -u honnef.co/go/tools/cmd/staticcheck
 
