@@ -12,7 +12,7 @@ before_install:
 
 script:
   - make vet
-  - make lint
+  # - make lint
   - make errcheck
   - make staticcheck
   - make test
