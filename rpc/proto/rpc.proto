@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package message;
+option go_package = "proto";
+
+message NetworkAddress {
+    uint64 time = 1;
+    uint32 stream = 2;
+    uint64 services = 3;
+    bytes ip_address = 4;
+    sfixed32 port = 5;
+}
+
+message Version {
+    int32 version = 1;
+    uint64 services = 2;
+    int64 timestamp = 3;
+    NetworkAddress receiver = 4;
+    NetworkAddress sender = 5;
+    uint64 nonce = 6;
+    string user_agent = 7;
+    repeated int64 stream_numbers = 8;
+}
+
+service Versioner {
+    rpc Version (VersionRequest) returns (VersionResponse) {}
+}
+
+message VersionRequest {
+    Version version = 1;
+}
+
+message VersionResponse {
+    Version version = 1;
+}

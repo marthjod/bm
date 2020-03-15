@@ -22,3 +22,16 @@ staticcheck:
 .PHONY: test
 test:
 	STATUS=0; for PKG in $(PACKAGES); do go test -cover -coverprofile $$GOPATH/src/$$PKG/coverage.out $$PKG || STATUS=1; done; exit $$STATUS
+
+.PHONY: proto
+proto:
+	@cd rpc/proto && protoc \
+		-I. \
+		-I.. \
+		-I../.. \
+		-I${GOPATH}/src \
+		-I${GOPATH}/src/github.com/gogo/protobuf/protobuf/ \
+		--include_imports \
+		--descriptor_set_out=rpc.protoset \
+		--gogo_out=plugins=grpc:. \
+		rpc.proto
