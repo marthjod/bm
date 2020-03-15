@@ -18,10 +18,10 @@ const (
 type Server struct {
 	proto.VersionerServer
 	IPAddress net.IP
-	Port      int32
+	Port      uint16
 }
 
-func New(port int32) (*Server, error) {
+func New(port uint16) (*Server, error) {
 	s := &Server{
 		Port: port,
 	}
@@ -44,7 +44,7 @@ func (s *Server) Version(ctx context.Context, req *proto.VersionRequest) (*proto
 			Receiver: &proto.NetworkAddress{
 				Time:      uint64(time.Now().Unix()),
 				IpAddress: s.IPAddress,
-				Port:      s.Port,
+				Port:      int32(s.Port),
 			},
 		},
 	}, nil
